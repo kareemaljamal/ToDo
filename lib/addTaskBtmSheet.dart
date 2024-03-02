@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:to_do_app/firebase/firebase_fuctions.dart';
+import 'package:to_do_app/model/task_model.dart';
 
 class AddTaskBottomSheet extends StatefulWidget {
   AddTaskBottomSheet({super.key});
@@ -92,7 +94,15 @@ class _AddTaskBottomSheetState
           ElevatedButton(
               style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue),
-              onPressed: () {},
+              onPressed: () {
+                TaskModel task = TaskModel(
+                    date:
+                        choosenDate.millisecondsSinceEpoch,
+                    description: descriptionController.text,
+                    title: titleController.text);
+                FirebaseFunctions.addTask(task);
+                Navigator.pop(context);
+              },
               child: Text(
                 'Add Task',
                 style: TextStyle(

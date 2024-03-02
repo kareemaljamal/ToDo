@@ -22,6 +22,7 @@ class FirebaseFunctions {
     var doc = collection.doc();
     // to save the id in the task before sending
     task.id = doc.id;
+    print(task.title);
     doc.set(task);
   }
 }
